@@ -1,0 +1,28 @@
+name: Bybit Short Bot
+
+on:
+  schedule:
+    - cron: '40 15 * * *' # 22:40 WIB
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - name: Wait until 23:00 WIB
+        run: node wait.js
+
+      - name: Run Bot
+        run: node bot.js
+        env:
+          API_KEY: ${{ secrets.API_KEY_BYBIT_TESTNET }}
+          API_SECRET: ${{ secrets.API_SECRET_BYBIT_TESTNET }}
