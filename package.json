@@ -1,0 +1,7 @@
+{
+  "name": "bybit-bot",
+  "version": "1.0.0",
+  "dependencies": {
+    "bybit-api": "^3.0.0"
+  }
+}
